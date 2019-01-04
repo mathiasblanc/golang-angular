@@ -1,14 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"path"
 	"path/filepath"
 
+	auth0 "github.com/auth0-community/go-auth0"
 	"github.com/gin-gonic/gin"
 	"github.com/mathiasblanc/golang-angular/handlers"
+	jose "gopkg.in/square/go-jose.v2"
 )
 
 var (
@@ -61,6 +64,8 @@ func authRequired() gin.HandlerFunc {
 		_, err := validator.ValidateRequest(c.Request)
 
 		if err != nil {
+			fmt.Println(err)
+
 			log.Println(err)
 			terminateWithError(http.StatusUnauthorized, "token is not valid", c)
 			return
