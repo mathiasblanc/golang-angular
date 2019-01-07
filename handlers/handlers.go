@@ -48,7 +48,7 @@ func CompleteTodoHandler(c *gin.Context) {
 		return
 	}
 
-	if todo.Complete(item.Id) != nil {
+	if todo.Complete(item.ID) != nil {
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}

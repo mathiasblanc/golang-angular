@@ -23,7 +23,7 @@ func initializeList() {
 
 //Todo data structure for a task with a description of what to do
 type Todo struct {
-	Id       string `json:"id"`
+	ID       string `json:"id"`
 	Message  string `json:"message"`
 	Complete bool   `json:"complete"`
 }
@@ -40,7 +40,7 @@ func Add(message string) string {
 	list = append(list, todo)
 	mtx.Unlock()
 
-	return todo.Id
+	return todo.ID
 }
 
 //Delete removes a todo from the todo list
@@ -69,7 +69,7 @@ func Complete(id string) error {
 
 func newTodo(message string) Todo {
 	return Todo{
-		Id:       xid.New().String(),
+		ID:       xid.New().String(),
 		Message:  message,
 		Complete: false,
 	}
@@ -80,7 +80,7 @@ func findTodoLocation(id string) (int, error) {
 	defer mtx.RUnlock()
 
 	for i, t := range list {
-		if isMatchingId(t.Id, id) {
+		if isMatchingId(t.ID, id) {
 			return i, nil
 		}
 	}

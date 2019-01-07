@@ -70,8 +70,8 @@ func authRequired() gin.HandlerFunc {
 			terminateWithError(http.StatusUnauthorized, "token is not valid", c)
 			return
 		}
-		c.Next()
 
+		c.Next()
 	}
 }
 
